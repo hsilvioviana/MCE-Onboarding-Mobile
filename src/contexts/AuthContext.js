@@ -9,7 +9,6 @@ export const AuthContext = createContext({
     loading: false,
     signIn({ email, senha }) {},
     signOut() {},
-    updateUserData(id) {},
   });
 
   export function AuthProvider({ children }) {
@@ -43,7 +42,7 @@ export const AuthContext = createContext({
       try {
         await AsyncStorage.setItem(
           "@Mindeducation:user",
-          JSON.stringify(response.data.user)
+          JSON.stringify(response.data.token)
         );
         await AsyncStorage.setItem(
           "@Mindeducation:token",
@@ -59,10 +58,11 @@ export const AuthContext = createContext({
         });
       }
   
-      return response.data.user;
+      return response.data.token;
     }, []);
   
     const signOut = useCallback(async () => {
+
       try {
         await AsyncStorage.removeItem("@Mindeducation:user");
         await AsyncStorage.removeItem("@Mindeducation:token");
@@ -78,29 +78,9 @@ export const AuthContext = createContext({
       }
     }, []);
   
-    const updateUserData = useCallback(async (id) => {
-      try {
-        const response = await api.get(`/users/${id}`);
-        setUser(response.data);
-        await AsyncStorage.setItem(
-          "@Mindeducation:user",
-          JSON.stringify(response.data)
-        );
-      } catch (err) {
-        console.log(err);
-        Toast.show({
-          type: "error",
-          position: "bottom",
-          text1: "Erro",
-          text2: "Não foi atualizar alguma informação, tente relogar no app.",
-        });
-      }
-    }, []);
-  
     return (
-        // signOut, updateUserData
       <AuthContext.Provider
-        value={{ user, loading, signIn }}
+        value={{ user, loading, signIn, signOut }}
       >
         {children}
       </AuthContext.Provider>

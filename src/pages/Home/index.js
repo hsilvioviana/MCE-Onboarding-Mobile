@@ -17,14 +17,13 @@ import {
   ProfileContent,
   ProfileContentImage,
   ProfileUserContent,
-  UserWelcomeText,
-  UserWelcomeSpanText,
   UserEmail,
   EditProfileButton,
   EditProfileButtonText,
 } from "./styles";
 
 export function Home() {
+
   const { user, signOut } = useAuth();
 
   const navigation = useNavigation();
@@ -33,7 +32,7 @@ export function Home() {
 
     try {
 
-      await signOut();
+      signOut();
 
       navigation.reset({ index: 0, routes: [{ name: "Login" }] });
     } catch {
