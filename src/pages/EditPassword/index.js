@@ -17,10 +17,10 @@ import { Keyboard } from "react-native";
 
 export function EditPassword() {
     
-  const { user } = useAuth();
+  const { token } = useAuth();
 
   const [antigaSenha, setAntigaSenha] = useState("");
-  const [id, setId] = useState(jwt_decode(user).id);
+  const [id, setId] = useState(jwt_decode(token).id);
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [showOldPassword, setShowOldPassword] = useState(false);
@@ -54,7 +54,7 @@ export function EditPassword() {
 
       await schema.validate(data, { abortEarly: false });
 
-      const headers = { headers: { Authorization: user } }
+      const headers = { headers: { Authorization: token } }
       
       await api.put(`/users/edit/password/${id}`, 
       {...data, password: antigaSenha, newPassword: senha}, headers);

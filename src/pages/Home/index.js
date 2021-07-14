@@ -19,6 +19,9 @@ import {
   ProfileUserContent,
   EditProfileButton,
   EditProfileButtonText,
+  UserWelcomeText,
+  UserWelcomeSpanText,
+  UserEmail
 } from "./styles";
 
 export function Home() {
@@ -57,6 +60,15 @@ export function Home() {
         <ProfileContentImage source={developerActivityImg} />
 
         <ProfileUserContent>
+
+          <UserWelcomeText>
+            Bem vindo,{" "}
+            <UserWelcomeSpanText>
+              {user?.name.split(" ")[0]}
+            </UserWelcomeSpanText>
+          </UserWelcomeText>
+
+          <UserEmail>{user?.email}</UserEmail>
 
           <EditProfileButton onPress={() => navigation.navigate("EditProfile")}>
             <EditProfileButtonText>Editar perfil</EditProfileButtonText>

@@ -17,8 +17,8 @@ import { Keyboard } from "react-native";
 
 export function EditProfile() {
 
-  const { user } = useAuth();
-  const [id, setId] = useState(jwt_decode(user).id);
+  const { token, setUser } = useAuth();
+  const [id, setId] = useState(jwt_decode(token).id);
   const [email, setEmail] = useState("");
   const [nome, setNome] = useState("");
   const [nickname, setNickname] = useState("");
@@ -52,7 +52,7 @@ export function EditProfile() {
 
       await schema.validate(data, { abortEarly: false });
 
-      const headers = { headers: { Authorization: user } }
+      const headers = { headers: { Authorization: token } }
 
       await api.put(`/users/edit/info/${id}`, {...data, name: nome}, headers);
 
@@ -61,7 +61,8 @@ export function EditProfile() {
         text1: "Sucesso",
         text2: "Perfil atualizado!",
       });
-
+      
+      setUser({...data, name: nome})
       Keyboard.dismiss();
       navigation.goBack();
     } catch (err) {

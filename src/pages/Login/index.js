@@ -43,8 +43,6 @@ export function Login() {
       navigation.reset({ index: 0, routes: [{ name: "Home" }] });
     } catch (err) {
 
-      console.log(err.response.data)
-
       if (err instanceof Yup.ValidationError) {
         err.inner.forEach((error) => {
           setValidationErrors((state) => {

@@ -39,8 +39,8 @@ export const ProfileContent = styled.View`
 
 export const ProfileContentImage = styled.Image`
   margin-top: -152px;
-  width: 304px;
-  height: 304px;
+  width: 200px;
+  height: 200px;
 `;
 
 export const ProfileUserContent = styled.View`
