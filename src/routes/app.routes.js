@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { Home } from "../pages/Home";
 import { EditProfile } from "../pages/EditProfile";
+import { EditPassword } from "../pages/EditPassword";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -11,6 +12,7 @@ export function AppRoutes() {
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="Home" component={Home} />
       <Screen name="EditProfile" component={EditProfile} />
+      <Screen name="EditPassword" component={EditPassword} />
     </Navigator>
   );
 }

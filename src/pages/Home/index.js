@@ -17,7 +17,6 @@ import {
   ProfileContent,
   ProfileContentImage,
   ProfileUserContent,
-  UserEmail,
   EditProfileButton,
   EditProfileButtonText,
 } from "./styles";
@@ -59,10 +58,11 @@ export function Home() {
 
         <ProfileUserContent>
 
-          <UserEmail>{user?.email}</UserEmail>
-
           <EditProfileButton onPress={() => navigation.navigate("EditProfile")}>
             <EditProfileButtonText>Editar perfil</EditProfileButtonText>
+          </EditProfileButton>
+          <EditProfileButton onPress={() => navigation.navigate("EditPassword")}>
+            <EditProfileButtonText>Editar senha</EditProfileButtonText>
           </EditProfileButton>
         </ProfileUserContent>
       </ProfileContent>
